@@ -15,9 +15,9 @@ Schematic and PCB are created using kicad. All files necessary for kicad are sto
 
 Tester has multiple modes:
 
- - *Potentiometer mode* - servo position is controlled by potentiometer and leds `LED_MIN` and `LED_MAX` light up when minimal or maximal position is reached.
- - *Auto mode* - servo tester sets up position automatically from 0° to 180° and from 180° to 0°.
- - *90° mode* - position is whole time at 90°
+ - **Potentiometer mode** - servo position is controlled by potentiometer and leds `LED_MIN` and `LED_MAX` light up when minimal or maximal position is reached.
+ - **Auto mode** - servo tester sets up position automatically from 0° to 180° and from 180° to 0°.
+ - **90° mode** - position is whole time at 90°
 
 ## ToDo
 
