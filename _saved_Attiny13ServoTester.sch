@@ -86,7 +86,7 @@ Wire Wire Line
 Wire Wire Line
 	5700 4000 5650 4000
 Wire Wire Line
-	4150 4400 5800 4400
+	4150 4400 4900 4400
 Wire Wire Line
 	5800 4400 5800 3850
 Wire Wire Line
@@ -123,10 +123,6 @@ Wire Wire Line
 Connection ~ 5800 3500
 Wire Wire Line
 	5800 3500 5800 3850
-Wire Wire Line
-	4750 3600 5300 3600
-Wire Wire Line
-	5300 3600 5300 3350
 Wire Wire Line
 	4750 3500 4750 3000
 Wire Wire Line
@@ -245,4 +241,28 @@ Connection ~ 6100 3100
 Wire Wire Line
 	6600 3200 6100 3200
 Connection ~ 6100 3200
+Wire Wire Line
+	4750 3700 5050 3700
+Wire Wire Line
+	5050 3700 5050 3350
+Wire Wire Line
+	5050 3350 5300 3350
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5C6A9BCC
+P 4900 4200
+F 0 "SW1" V 4900 4348 50  0000 L CNN
+F 1 "SW_Push" H 4900 4394 50  0001 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 4900 4400 50  0001 C CNN
+F 3 "" H 4900 4400 50  0001 C CNN
+	1    4900 4200
+	0    1    1    0   
+$EndComp
+Connection ~ 4900 4400
+Wire Wire Line
+	4900 4400 5800 4400
+Wire Wire Line
+	4900 4000 4900 3600
+Wire Wire Line
+	4900 3600 4750 3600
 $EndSCHEMATC
