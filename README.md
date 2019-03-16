@@ -21,6 +21,7 @@ Tester has multiple modes:
 
 ## ToDo
 
+ - add resistor for servo
  - complete all modes
  - add mode change led signalisation
  - cleanup code
