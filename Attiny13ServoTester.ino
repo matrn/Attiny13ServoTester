@@ -8,8 +8,8 @@
  */
 
 #define POT A1   //potentiometer for changing position of servo
-#define LED_MIN 3   //LED for minimal position
-#define LED_MAX 4   //LED for maximal position
+#define LED_MIN 4   //LED for minimal position
+#define LED_MAX 3   //LED for maximal position
 
 #define SERVO 0   //pin for servo connection
 
@@ -54,9 +54,9 @@ void loop(){
   if(pos == 0){   
     int val = analogRead(POT);   
      
-    if(val < 10) val = 10;   //ignore first 10 steps
-    if(val > 1010) val = 1010;   //ignore last 13 steps
-    val = map(val, 10, 1010, 0, 180);
+    if(val < 5) val = 5;   //ignore first 10 steps
+    if(val > 1018) val = 1018;   //ignore last 13 steps
+    val = 180-map(val, 5, 1018, 0, 180);
     
     pulseOut(SERVO, val);
   
