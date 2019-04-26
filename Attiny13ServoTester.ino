@@ -1,3 +1,12 @@
+/* settings:
+ *  Board: ATtiny13
+ *  Brown-out Detection Level: "1.8V"
+ *  Link Time Optimalisation: "LTO Enabled"
+ *  Processor Version: "ATtiny13"
+ *  Processor Speed: "9.6MHz Internal Oscillator"
+ *  Programmer: "Arduino as ISP"
+ */
+
 #define POT A1   //potentiometer for changing position of servo
 #define LED_MIN 3   //LED for minimal position
 #define LED_MAX 4   //LED for maximal position
@@ -6,8 +15,8 @@
 
 #define BTN 1   //pin for mode button
 
-byte last_state = 0;
-byte pos = 0;
+byte last_state = 0;   //last state of button
+byte pos = 0;   //current position of mode
 
 
 void setup(){  
@@ -23,48 +32,77 @@ void setup(){
   #ifdef __AVR_ATtiny13__
   analogReference(0);//this line is essential for the Attiny13
   #endif
-  
+
+  //-----boot blink-----
+  for(byte a = 0; a < 5; a ++){
+    digitalWrite(LED_MIN, HIGH);
+    digitalWrite(LED_MAX, LOW);
+    delay(100);
+    digitalWrite(LED_MIN, LOW);
+    digitalWrite(LED_MAX, HIGH);
+    delay(100);
+  }
+
   digitalWrite(LED_MIN, LOW);
   digitalWrite(LED_MAX, LOW);
+  //-----boot blink-----
 }
 
 
 void loop(){
-  if(pos == 0){
-    byte val = map(analogRead(POT), 0, 1023, 0, 180);
-    //Serial.println(val);
+  //-----potentiometer mode-----
+  if(pos == 0){   
+    int val = analogRead(POT);   
+     
+    if(val < 10) val = 10;   //ignore first 10 steps
+    if(val > 1010) val = 1010;   //ignore last 13 steps
+    val = map(val, 10, 1010, 0, 180);
+    
     pulseOut(SERVO, val);
   
     leds(val);
 
     if(check_change_mode() == 1) pos = 1;
   }
+  //-----potentiometer mode-----
+
+  //-----auto mode-----
   if(pos == 1){
     for(byte a = 0; a < 180; a ++){
       pulseOut(SERVO, a);
       leds(a);
       
       if(check_change_mode() == 1){
-        pos = 0;
+        pos = 2;
         break;    
       }
-      delay(5);
+      delay(20);
     }
     delay(10);
   }
+  
   if(pos == 1){
     for(byte a = 180; a > 0; a --){
       pulseOut(SERVO, a);
       leds(a);
-
+  
       if(check_change_mode() == 1){
-        pos = 0;
+        pos = 2;
         break;    
       }
-      delay(5);
+      delay(20);
     }
     delay(10);
   }
+  //-----auto mode-----
+
+  //-----90° mode-----
+  if(pos == 2){
+    pulseOut(SERVO, 90);
+    
+    if(check_change_mode() == 1) pos = 0;
+  }
+  //-----90° mode-----
   
   delay(20);
 }
@@ -116,8 +154,7 @@ void leds(byte val){
 void blink(){
   digitalWrite(LED_MIN, HIGH);
   digitalWrite(LED_MAX, HIGH);
-  delay(100);
+  delay(200);
   digitalWrite(LED_MIN, LOW);
   digitalWrite(LED_MAX, LOW);
 }
-

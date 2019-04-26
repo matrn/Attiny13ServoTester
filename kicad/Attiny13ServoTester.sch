@@ -86,7 +86,7 @@ Wire Wire Line
 Wire Wire Line
 	5700 4000 5650 4000
 Wire Wire Line
-	4150 4400 4900 4400
+	4150 4400 4850 4400
 Wire Wire Line
 	5800 4400 5800 3850
 Wire Wire Line
@@ -125,8 +125,6 @@ Wire Wire Line
 	5800 3500 5800 3850
 Wire Wire Line
 	4750 3500 4750 3000
-Wire Wire Line
-	4750 3000 6100 3000
 $Comp
 L Regulator_Linear:AMS1117-3.3 U2
 U 1 1 5C698234
@@ -233,9 +231,6 @@ F 3 "~" H 6800 3100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	6600 3000 6100 3000
-Connection ~ 6100 3000
-Wire Wire Line
 	6600 3100 6100 3100
 Connection ~ 6100 3100
 Wire Wire Line
@@ -244,25 +239,102 @@ Connection ~ 6100 3200
 Wire Wire Line
 	4750 3700 5050 3700
 Wire Wire Line
-	5050 3700 5050 3350
-Wire Wire Line
 	5050 3350 5300 3350
 $Comp
 L Switch:SW_Push SW1
 U 1 1 5C6A9BCC
-P 4900 4200
-F 0 "SW1" V 4900 4348 50  0000 L CNN
-F 1 "SW_Push" H 4900 4394 50  0001 C CNN
-F 2 "Button_Switch_THT:SW_PUSH_6mm" H 4900 4400 50  0001 C CNN
-F 3 "" H 4900 4400 50  0001 C CNN
-	1    4900 4200
+P 4850 4200
+F 0 "SW1" V 4800 4300 50  0000 L CNN
+F 1 "SW_Push" H 4850 4394 50  0001 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 4850 4400 50  0001 C CNN
+F 3 "" H 4850 4400 50  0001 C CNN
+	1    4850 4200
 	0    1    1    0   
 $EndComp
-Connection ~ 4900 4400
+$Comp
+L Device:R R3
+U 1 1 5CC06795
+P 4900 3000
+F 0 "R3" H 4970 3046 50  0000 L CNN
+F 1 "1k" H 4970 2955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4830 3000 50  0001 C CNN
+F 3 "~" H 4900 3000 50  0001 C CNN
+	1    4900 3000
+	0    -1   -1   0   
+$EndComp
 Wire Wire Line
-	4900 4400 5800 4400
+	5050 3000 6100 3000
+Connection ~ 6100 3000
 Wire Wire Line
-	4900 4000 4900 3600
+	6100 3000 6600 3000
+Connection ~ 4850 4400
 Wire Wire Line
-	4900 3600 4750 3600
+	4850 4000 4850 3600
+Wire Wire Line
+	4850 4400 5800 4400
+Wire Wire Line
+	4850 3600 4750 3600
+Wire Wire Line
+	5150 4150 5150 4100
+Wire Wire Line
+	5150 4100 4950 4100
+Wire Wire Line
+	4950 4100 4950 4000
+Wire Wire Line
+	4950 4000 4850 4000
+Connection ~ 4850 4000
+Wire Wire Line
+	4650 3000 4750 3000
+Connection ~ 4750 3000
+Wire Wire Line
+	4750 4500 4750 4000
+$Comp
+L Connector:Conn_01x01_Male J4
+U 1 1 5CC0BA9E
+P 4850 3400
+F 0 "J4" H 4956 3578 50  0001 C CNN
+F 1 "PROG_SCK" H 5000 3500 50  0000 C CNN
+F 2 "Connector_Pin:Pin_D0.7mm_L6.5mm_W1.8mm_FlatFork" H 4850 3400 50  0001 C CNN
+F 3 "~" H 4850 3400 50  0001 C CNN
+	1    4850 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J7
+U 1 1 5CC0BCBF
+P 5150 4350
+F 0 "J7" H 5256 4528 50  0001 C CNN
+F 1 "PROG_MISO" V 5150 4300 50  0000 R CNN
+F 2 "Connector_Pin:Pin_D0.7mm_L6.5mm_W1.8mm_FlatFork" H 5150 4350 50  0001 C CNN
+F 3 "~" H 5150 4350 50  0001 C CNN
+	1    5150 4350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J5
+U 1 1 5CC0BCE6
+P 4650 2800
+F 0 "J5" H 4756 2978 50  0001 C CNN
+F 1 "PROG_MOSI" V 4600 2500 50  0000 L CNN
+F 2 "Connector_Pin:Pin_D0.7mm_L6.5mm_W1.8mm_FlatFork" H 4650 2800 50  0001 C CNN
+F 3 "~" H 4650 2800 50  0001 C CNN
+	1    4650 2800
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J6
+U 1 1 5CC0BD6B
+P 4750 4700
+F 0 "J6" H 4856 4878 50  0001 C CNN
+F 1 "PROG_RESET" V 4857 4612 50  0000 R CNN
+F 2 "Connector_Pin:Pin_D0.7mm_L6.5mm_W1.8mm_FlatFork" H 4750 4700 50  0001 C CNN
+F 3 "~" H 4750 4700 50  0001 C CNN
+	1    4750 4700
+	0    -1   -1   0   
+$EndComp
+Connection ~ 5050 3400
+Wire Wire Line
+	5050 3400 5050 3350
+Wire Wire Line
+	5050 3400 5050 3700
 $EndSCHEMATC
